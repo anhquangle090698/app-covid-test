@@ -1,0 +1,92 @@
+.total-case {
+  margin: 40px auto;
+  max-width: 1440px;
+
+  &__title {
+    @include styleText(#212121, 22px, 400);
+    position: relative;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      top: -2px;
+      left: -10px;
+
+      height: 100%;
+      width: 3px;
+
+      background-color: #ff8121;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+
+    margin: 30px 0;
+
+    gap: 10px 30px;
+  }
+
+  &__card {
+    padding: 30px;
+    border: 1px solid #e5e5e5;
+
+    border-radius: 10px;
+    background-color: #ffffff;
+
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+
+    &--infected {
+      border-bottom: 3px solid #ff8121;
+    }
+
+    &--recovered {
+      border-bottom: 3px solid #2ecc71;
+    }
+
+    &--deaths {
+      border-bottom: 3px solid #ff3224;
+    }
+
+    p {
+      background-color: #ffffff;
+    }
+
+    &-subject {
+      @include styleText(#212121, 18px, 400);
+
+      text-transform: uppercase;
+    }
+
+    &-number {
+      @include styleText(#212121, 32px, 400);
+
+      margin: 15px 0;
+
+      letter-spacing: 0.8px;
+
+      &--infected {
+        color: #ff8121;
+      }
+
+      &--recovered {
+        color: #2ecc71;
+      }
+
+      &--deaths {
+        color: #ff3224;
+      }
+    }
+
+    &-description {
+      @include styleText(#212121, 14px, 400);
+
+      font-style: italic;
+    }
+  }
+}
