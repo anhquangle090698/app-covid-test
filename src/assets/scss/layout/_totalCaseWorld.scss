@@ -53,10 +53,6 @@
       border-bottom: 3px solid #ff3224;
     }
 
-    p {
-      background-color: #ffffff;
-    }
-
     &-subject {
       @include styleText(#212121, 18px, 400);
 

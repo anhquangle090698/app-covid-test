@@ -1,7 +1,11 @@
 .home {
-  max-width: 1680px;
-  margin: 30px auto;
-  padding: 0 30px;
+  background-color: #f5f5f5;
+
+  &__wrapper {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 30px;
+  }
 
   &__title {
     @include styleText(#212121, 35px, 400);
