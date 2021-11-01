@@ -1,4 +1,5 @@
 
+@import "helper/variable";
 @import "helper/mixin";
 
 @import "base/reset";
@@ -7,3 +8,5 @@
 @import "layout/home";
 @import "layout/totalCaseWorld";
 @import "layout/totalCountry";
+@import "layout/popupCountry";
+@import "layout/loading";

@@ -1,9 +1,9 @@
 .total-case {
-  margin: 40px auto;
-  max-width: 1440px;
+  margin: $mg-40 auto;
+  max-width: $mw-1440px;
 
   &__title {
-    @include styleText(#212121, 22px, 400);
+    @include styleText($color-black-1, $fs-18, $fw-400);
     position: relative;
 
     letter-spacing: 0.5px;
@@ -19,7 +19,7 @@
       height: 100%;
       width: 3px;
 
-      background-color: #ff8121;
+      background-color: $color-orange-0;
     }
   }
 
@@ -27,60 +27,59 @@
     display: flex;
     justify-content: center;
 
-    margin: 30px 0;
+    margin: $mg-30 0;
 
     gap: 10px 30px;
   }
 
   &__card {
-    padding: 30px;
-    border: 1px solid #e5e5e5;
-
-    border-radius: 10px;
-    background-color: #ffffff;
-
+    padding: $pd-30;
+    background-color: $color-white-0;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 
+    border: 1px solid $color-white-4;
+    border-radius: $br-10;
+
     &--infected {
-      border-bottom: 3px solid #ff8121;
+      border-bottom: 3px solid $color-orange-0;
     }
 
     &--recovered {
-      border-bottom: 3px solid #2ecc71;
+      border-bottom: 3px solid $color-green-0;
     }
 
     &--deaths {
-      border-bottom: 3px solid #ff3224;
+      border-bottom: 3px solid $color-red-0;
     }
 
     &-subject {
-      @include styleText(#212121, 18px, 400);
+      @include styleText($color-black-1, $fs-16, $fw-400);
 
       text-transform: uppercase;
     }
 
     &-number {
-      @include styleText(#212121, 32px, 400);
+      @include styleText($color-black-1, $fs-35 - 3, $fw-400);
 
-      margin: 15px 0;
+      margin: $mg-10 + 5 0;
 
       letter-spacing: 0.8px;
 
       &--infected {
-        color: #ff8121;
+        color: $color-orange-0;
       }
 
       &--recovered {
-        color: #2ecc71;
+        color: $color-green-0;
       }
 
       &--deaths {
-        color: #ff3224;
+        color: $color-red-0;
       }
     }
 
     &-description {
-      @include styleText(#212121, 14px, 400);
+      @include styleText($color-black-1, $fs-14, $fw-400);
 
       font-style: italic;
     }

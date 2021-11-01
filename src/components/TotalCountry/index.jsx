@@ -3,17 +3,41 @@ import PropTypes from "prop-types";
 import Country from "components/Country";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getCaseCountryApi,
+  getInformationCountryApi,
   sortDefault,
   sortHighestNumberDeaths,
   sortTotalConfirmed,
 } from "redux/actions/SummaryAction";
+import PopupCountry from "components/PopupCountry";
+import Loading from "components/Loading";
 
-function TotalCountry({ summary }) {
-  //   const summary = useSelector((state) => state.SummaryReducer.summary);
+function TotalCountry(props) {
+  const summary = useSelector((state) => state.SummaryReducer.summary);
+
+  const informationCountry = useSelector(
+    (state) => state.SummaryReducer.informationCountry
+  );
 
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(10);
+  const [togglePopup, setTogglePopup] = useState(false);
+  const [slug, setSlug] = useState("");
+
+  const handlePopup = async (countryCode, slug) => {
+    setTogglePopup(!togglePopup);
+    setSlug(slug);
+
+    dispatch(await getInformationCountryApi(countryCode));
+    
+    dispatch(await getCaseCountryApi(slug));
+    
+  };
+
+  const closePopup = () => {
+    setTogglePopup(!togglePopup);
+  };
 
   return (
     <div className="total-country">
@@ -92,15 +116,45 @@ function TotalCountry({ summary }) {
             </tr>
           </thead>
           <tbody className="total-country__tbody">
-            <Country summaryCountries={summary.Countries} value={value}></Country>
+            <Country
+              summaryCountries={summary.Countries}
+              value={value}
+              handlePopup={handlePopup}
+            ></Country>
           </tbody>
         </table>
       </div>
+
       <div className="total-country__more">
-          <button onClick={() => {
-              setValue(value + 10)
-          }}>Show more</button>
+        <button
+          className="total-country__button"
+          onClick={() => {
+            setValue(value + 10);
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            className="total-country__button-icon"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"
+            />
+          </svg>
+          <span className="total-country__button-text">View more</span>
+        </button>
       </div>
+      {togglePopup && (
+        <PopupCountry
+          informationCountry={informationCountry}
+          closePopup={closePopup}
+          slug={slug}
+        ></PopupCountry>
+      )}
     </div>
   );
 }

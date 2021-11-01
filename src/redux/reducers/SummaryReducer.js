@@ -1,5 +1,9 @@
 import {
+  GET_CASE_COUNTRY,
+  GET_CASE_COUNTRY_BY_DATE,
+  GET_INFORMATION_COUNTRY,
   GET_SUMMARY_ACTION,
+  REMOVE_DATA_CASE_COUNTRY_BY_DATE_AND_INFORMATION_COUNTRY,
   SORT_DEFAULT,
   SORT_HIGHEST_NUMBER_DEATHS,
   SORT_MOST_TOTAL_CONFIRMED_CASE,
@@ -7,12 +11,45 @@ import {
 
 const stateInitial = {
   summary: {},
+
+  informationCountry: [],
+
+  caseCountry: [],
+
+  caseCountryByDate: [],
+
+  loading: false,
 };
 
 const SummaryReducer = (state = stateInitial, action) => {
   switch (action.type) {
     case GET_SUMMARY_ACTION: {
       state.summary = action.payload;
+
+      return { ...state };
+    }
+
+    case GET_INFORMATION_COUNTRY: {
+      state.informationCountry = action.payload;
+
+      return { ...state };
+    }
+
+    case GET_CASE_COUNTRY: {
+      state.caseCountry = action.payload;
+
+      return { ...state };
+    }
+
+    case GET_CASE_COUNTRY_BY_DATE: {
+      state.caseCountryByDate = action.payload;
+
+      return { ...state };
+    }
+
+    case REMOVE_DATA_CASE_COUNTRY_BY_DATE_AND_INFORMATION_COUNTRY: {
+      state.caseCountryByDate = [];
+      state.informationCountry = []
 
       return { ...state };
     }
