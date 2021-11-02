@@ -1,7 +1,7 @@
 ### App Covid 
 
 - Link github: [app-covid-text](https://github.com/anhquangle090698/app-covid-test)
-- Link deploy: 
+- Link deploy: https://app-covid-test.vercel.app/
 #### Đảm bảo các chức năng theo yêu cầu
 
 - Hiển thị danh sách các quốc gia ảnh hưởng bởi dịch covid-19
