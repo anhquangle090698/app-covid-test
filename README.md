@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+### App Covid 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Đảm bảo các chức năng theo yêu cầu
 
-## Available Scripts
+- Hiển thị danh sách các quốc gia ảnh hưởng bởi dịch covid-19
+- Cho phép sắp xếp các quốc gia theo: quốc gia có nhiều ca nhiễm nhất, quốc gia có ca tử vong cao nhất, quốc gia có người hồi phục thấp nhất (vì api bị lỗi số người hồi phục nên em không có làm chức năng này)
+- Hiển thị popup chi tiết quốc gia gồm 2 phần
 
-In the project directory, you can run:
+  - Phần đầu chi tiết quốc gia: khu vực, tiểu vùng, thủ đô, diện tích, dân số, quốc kỳ, tên quốc gia.
+  - Phần hai hiển thị biểu đồ thống kê số liệu covid theo khoảng thời gian nhất định.
 
-### `yarn start`
+- Có thể đánh dấu hoặc xóa quốc gia (được xử lý ở redux)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Các chức năng thực hiện thêm 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Thống kê số liệu covid-19 trên thế giới trong 1 ngày và tất cả các ngày.
+- Chức năng mở rộng khi xem danh sách quốc gia.
 
-### `yarn test`
+#### Thực hiện một số chức năng BIG PLUS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Spinner-loader, responsive (min-width: 500px up to).
+- Create UI manually (use SCSS).
+- Deploy to any platform that you know.

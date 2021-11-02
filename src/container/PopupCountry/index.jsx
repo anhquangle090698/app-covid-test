@@ -1,19 +1,27 @@
-import React, { Fragment, useState } from "react";
-import PropTypes from "prop-types";
+import Loading from "components/Loading";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
+import PropTypes from "prop-types";
+import React, { Fragment, useState } from "react";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCaseCountryByDateApi,
-  removeDataCaseCountryByDateAndInformationCountry,
+  removeDataCaseCountryByDateAndInformationCountry
 } from "redux/actions/SummaryAction";
-import ReactDatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import Loading from "components/Loading";
 
-function PopupCountry({ informationCountry, closePopup, slug, loading }) {
-  const [showChart, setShowChart] = useState(false);
+PopupCountry.propTypes = {
+  showChart: PropTypes.bool,
+  dateRange: PropTypes.array,
+  informationCountry: PropTypes.array,
+  caseCountryByDate: PropTypes.array,
+  handleSubmit: PropTypes.func,
+};
+
+function PopupCountry({ informationCountry, closePopup, slug }) {
+  const [showChart, setShowChart] = useState(false); //ẩn hiện chart
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
 
@@ -39,6 +47,7 @@ function PopupCountry({ informationCountry, closePopup, slug, loading }) {
     return moment(date.Date).format("DD/MM/YYYY");
   });
 
+  //Options cho highcharts
   const options = {
     chart: {
       type: "line",
@@ -142,7 +151,7 @@ function PopupCountry({ informationCountry, closePopup, slug, loading }) {
                   {informationCountry[0]?.subregion}
                 </p>
               </div>
-              <div className="popup-country__item">
+              <div className="popup-country__item popup-country__item-capital">
                 <p className="popup-country__character">Thủ đô</p>
                 <p className="popup-country__text">
                   {informationCountry[0]?.capital[0]}
@@ -152,14 +161,8 @@ function PopupCountry({ informationCountry, closePopup, slug, loading }) {
                 <p className="popup-country__name">
                   {informationCountry[0]?.name.common}
                 </p>
-                <div className="popup-country__line popup-country__line--1"></div>
-                <div className="popup-country__line popup-country__line--2"></div>
-                <div className="popup-country__line popup-country__line--3"></div>
-                <div className="popup-country__line popup-country__line--4"></div>
-                <div className="popup-country__line popup-country__line--5"></div>
-                <div className="popup-country__line popup-country__line--6"></div>
               </div>
-              <div className="popup-country__item">
+              <div className="popup-country__item popup-country__item-area">
                 <p className="popup-country__character">Diện tích</p>
                 <p className="popup-country__text">
                   {informationCountry[0]?.area.toLocaleString(2)} km<sup>2</sup>
@@ -205,6 +208,7 @@ function PopupCountry({ informationCountry, closePopup, slug, loading }) {
                 className="popup-country__date-custom"
                 placeholderText="Chọn theo khoảng thời gian"
                 minDate={new Date("2020/01/22")}
+                maxDate={new Date()}
               />
               <input
                 type="submit"
@@ -225,7 +229,5 @@ function PopupCountry({ informationCountry, closePopup, slug, loading }) {
     </Fragment>
   );
 }
-
-PopupCountry.propTypes = {};
 
 export default PopupCountry;

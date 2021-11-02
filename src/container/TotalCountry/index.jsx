@@ -1,42 +1,63 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import Country from "components/Country";
+import PopupCountry from "container/PopupCountry";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getCaseCountryApi,
+  addBookmarkCountry,
   getInformationCountryApi,
+  removeCountry,
   sortDefault,
   sortHighestNumberDeaths,
-  sortTotalConfirmed,
+  sortTotalConfirmed
 } from "redux/actions/SummaryAction";
-import PopupCountry from "components/PopupCountry";
-import Loading from "components/Loading";
+
+TotalCountry.propTypes = {
+  summary: PropTypes.object,
+  informationCountry: PropTypes.array,
+  quantityCountryShow: PropTypes.number,
+  togglePopup: PropTypes.bool,
+  slug: PropTypes.string,
+  handlePopup: PropTypes.func,
+  closePopup: PropTypes.func,
+  handleRemoveCountry: PropTypes.func,
+  handleBookmarkCountry: PropTypes.func,
+};
 
 function TotalCountry(props) {
+  const [quantityCountryShow, setQuantityCountryShow] = useState(10); // số lượng đất nước hiển thị khi click show more
+  const [togglePopup, setTogglePopup] = useState(false); // bật tắt popup
+  const [slug, setSlug] = useState("");
+
+  const dispatch = useDispatch();
+
   const summary = useSelector((state) => state.SummaryReducer.summary);
 
   const informationCountry = useSelector(
     (state) => state.SummaryReducer.informationCountry
   );
 
-  const dispatch = useDispatch();
-
-  const [value, setValue] = useState(10);
-  const [togglePopup, setTogglePopup] = useState(false);
-  const [slug, setSlug] = useState("");
-
+  //Xử lý logic khi click hiển popup (show popup, set giá trị slug, gọi api lấy thông tin đất nước)
   const handlePopup = async (countryCode, slug) => {
     setTogglePopup(!togglePopup);
     setSlug(slug);
 
     dispatch(await getInformationCountryApi(countryCode));
-    
-    dispatch(await getCaseCountryApi(slug));
-    
   };
 
+  //Xử lý logic đóng popup
   const closePopup = () => {
     setTogglePopup(!togglePopup);
+  };
+
+  //Xóa country được click
+  const handleRemoveCountry = (countryCode) => {
+    dispatch(removeCountry(countryCode));
+  };
+
+  //Thêm bookmark cho đất nước được click
+  const handleBookmarkCountry = (countryCode) => {
+    dispatch(addBookmarkCountry(countryCode));
   };
 
   return (
@@ -113,13 +134,16 @@ function TotalCountry(props) {
               <th className="total-country__th">Số ca hồi phục</th>
               <th className="total-country__th">Số ca tử vong</th>
               <th className="total-country__th">Chi tiết</th>
+              <th className="total-country__th">Tác vụ</th>
             </tr>
           </thead>
           <tbody className="total-country__tbody">
             <Country
               summaryCountries={summary.Countries}
-              value={value}
+              quantityCountryShow={quantityCountryShow}
               handlePopup={handlePopup}
+              handleRemoveCountry={handleRemoveCountry}
+              handleBookmarkCountry={handleBookmarkCountry}
             ></Country>
           </tbody>
         </table>
@@ -129,7 +153,7 @@ function TotalCountry(props) {
         <button
           className="total-country__button"
           onClick={() => {
-            setValue(value + 10);
+            setQuantityCountryShow(quantityCountryShow + 10);
           }}
         >
           <svg
@@ -158,7 +182,5 @@ function TotalCountry(props) {
     </div>
   );
 }
-
-TotalCountry.propTypes = {};
 
 export default TotalCountry;

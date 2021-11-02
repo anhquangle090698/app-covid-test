@@ -13,11 +13,6 @@ const CovidApi = {
     });
   },
 
-  getCaseCountry: (slug) => {
-    const url = `country/${slug}`;
-    return axiosClient.get(url);
-  },
-
   getCaseCountryByDate: (slug, dateFrom, dateTo) => {
     const url = `country/${slug}?from=${dateFrom}&to=${dateTo}`;
     return axiosClient.get(url);

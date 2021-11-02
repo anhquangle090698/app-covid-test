@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .home {
   background-color: $color-white-1;
 
@@ -31,6 +38,61 @@
       height: 2px;
 
       background-color: $color-black-1;
+    }
+  }
+
+  &__footer {
+    text-align: center;
+  }
+
+  &__slogan {
+    @include styleText($color-black-1, $fs-22 + 3, $fw-700);
+
+    letter-spacing: 1px;
+    line-height: 30px;
+  }
+}
+
+//Responsive
+
+@media screen and (max-width: 1300px) {
+  .home {
+    &__title {
+      font-size: $fs-22 + 3;
+
+      max-width: $mw-600px - 100;
+    }
+
+    &__slogan {
+      font-size: $fs-22 - 2;
+    }
+  }
+}
+
+@include responsive("lg") {
+  .home {
+    &__title {
+      font-size: $fs-22 - 2;
+
+      max-width: $mw-600px - 200;
+    }
+
+    &__slogan {
+      font-size: $fs-18;
+    }
+  }
+}
+
+@include responsive("md") {
+  .home {
+    &__title {
+      font-size: $fs-18;
+
+      max-width: $mw-600px - 250;
+    }
+
+    &__slogan {
+      font-size: $fs-16;
     }
   }
 }

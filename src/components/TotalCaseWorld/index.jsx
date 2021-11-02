@@ -1,8 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import Loading from "components/Loading";
+
+TotalCaseWorld.propTypes = {
+  global: PropTypes.object,
+  summary: PropTypes.object,
+};
 
 function TotalCaseWorld() {
   const summary = useSelector((state) => state.SummaryReducer.summary);
@@ -86,9 +91,5 @@ function TotalCaseWorld() {
     </div>
   );
 }
-
-TotalCaseWorld.propTypes = {
-  global: PropTypes.object,
-};
 
 export default TotalCaseWorld;

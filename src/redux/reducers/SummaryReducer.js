@@ -1,8 +1,9 @@
 import {
-  GET_CASE_COUNTRY,
+  ADD_BOOKMARK_COUNTRY,
   GET_CASE_COUNTRY_BY_DATE,
   GET_INFORMATION_COUNTRY,
   GET_SUMMARY_ACTION,
+  REMOVE_COUNTRY,
   REMOVE_DATA_CASE_COUNTRY_BY_DATE_AND_INFORMATION_COUNTRY,
   SORT_DEFAULT,
   SORT_HIGHEST_NUMBER_DEATHS,
@@ -13,8 +14,6 @@ const stateInitial = {
   summary: {},
 
   informationCountry: [],
-
-  caseCountry: [],
 
   caseCountryByDate: [],
 
@@ -35,12 +34,6 @@ const SummaryReducer = (state = stateInitial, action) => {
       return { ...state };
     }
 
-    case GET_CASE_COUNTRY: {
-      state.caseCountry = action.payload;
-
-      return { ...state };
-    }
-
     case GET_CASE_COUNTRY_BY_DATE: {
       state.caseCountryByDate = action.payload;
 
@@ -49,7 +42,7 @@ const SummaryReducer = (state = stateInitial, action) => {
 
     case REMOVE_DATA_CASE_COUNTRY_BY_DATE_AND_INFORMATION_COUNTRY: {
       state.caseCountryByDate = [];
-      state.informationCountry = []
+      state.informationCountry = [];
 
       return { ...state };
     }
@@ -96,6 +89,37 @@ const SummaryReducer = (state = stateInitial, action) => {
       });
 
       state.summary.Countries = sort;
+
+      return { ...state, summary: { ...state.summary } };
+    }
+
+    case REMOVE_COUNTRY: {
+      const clone = [...state.summary.Countries];
+
+      const filter = clone.filter(
+        (country) => country.CountryCode !== action.payload
+      );
+
+      state.summary.Countries = filter;
+
+      return { ...state, summary: { ...state.summary } };
+    }
+
+    case ADD_BOOKMARK_COUNTRY: {
+      const clone = [...state.summary.Countries];
+
+      const map = clone.map((country) => {
+        if (country.CountryCode === action.payload) {
+          if (country.bookmark) {
+            return { ...country, bookmark: false };
+          } else {
+            return { ...country, bookmark: true };
+          }
+        }
+        return country;
+      });
+
+      state.summary.Countries = map;
 
       return { ...state, summary: { ...state.summary } };
     }

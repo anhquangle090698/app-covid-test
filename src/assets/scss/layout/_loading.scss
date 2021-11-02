@@ -1,8 +1,19 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+.loading-wrapper {
+  height: 100px;
+}
+
 .loading {
   position: relative;
   text-indent: -9999em;
 
-  margin: 88px auto;
+  margin: $mg-40 auto;
 
   width: 1em;
   height: 4em;
@@ -48,10 +59,12 @@
   0%,
   80%,
   100% {
+    -webkit-box-shadow: 0 0;
     box-shadow: 0 0;
     height: 3em;
   }
   40% {
+    -webkit-box-shadow: 0 -2em;
     box-shadow: 0 -2em;
     height: 4em;
   }
@@ -60,10 +73,12 @@
   0%,
   80%,
   100% {
+    -webkit-box-shadow: 0 0;
     box-shadow: 0 0;
     height: 3em;
   }
   40% {
+    -webkit-box-shadow: 0 -2em;
     box-shadow: 0 -2em;
     height: 4em;
   }

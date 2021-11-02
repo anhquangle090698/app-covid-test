@@ -1,9 +1,10 @@
 import CovidApi from "api/covidApi";
 import {
-  GET_CASE_COUNTRY,
+  ADD_BOOKMARK_COUNTRY,
   GET_CASE_COUNTRY_BY_DATE,
   GET_INFORMATION_COUNTRY,
   GET_SUMMARY_ACTION,
+  REMOVE_COUNTRY,
   REMOVE_DATA_CASE_COUNTRY_BY_DATE_AND_INFORMATION_COUNTRY,
   SORT_DEFAULT,
   SORT_HIGHEST_NUMBER_DEATHS,
@@ -43,25 +44,7 @@ export const getInformationCountryApi = async (countryCode) => {
     try {
       const response = await CovidApi.getInformationCountry(countryCode);
 
-        dispatch(getInformationCountryAction(response));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-export const getCaseCountryAction = (dataCaseCountry) => {
-  return {
-    type: GET_CASE_COUNTRY,
-    payload: dataCaseCountry,
-  };
-};
-//Action goi api lấy số liệu thống kê theo từng ngày của quốc gia
-export const getCaseCountryApi = async (slug) => {
-  return async (dispatch) => {
-    try {
-      const response = await CovidApi.getCaseCountry(slug);
-      dispatch(getCaseCountryAction(response));
+      dispatch(getInformationCountryAction(response));
     } catch (error) {
       console.log(error);
     }
@@ -115,3 +98,16 @@ export const removeDataCaseCountryByDateAndInformationCountry = () => {
   };
 };
 
+export const removeCountry = (countryCode) => {
+  return {
+    type: REMOVE_COUNTRY,
+    payload: countryCode,
+  };
+};
+
+export const addBookmarkCountry = (countryCode) => {
+  return {
+    type: ADD_BOOKMARK_COUNTRY,
+    payload: countryCode,
+  };
+};

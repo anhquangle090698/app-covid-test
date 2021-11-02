@@ -1,9 +1,16 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .total-country {
   margin: $mg-40 auto;
   max-width: $mw-1440px;
 
   &__title {
-    @include styleText($color-black-1, $fs-16, $fw-400);
+    @include styleText($color-black-1, $fs-18, $fw-400);
 
     position: relative;
 
@@ -24,7 +31,11 @@
   }
 
   &__filter {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
     gap: 0 20px;
 
@@ -41,6 +52,8 @@
     border-radius: $br-5;
 
     cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 
     &:hover {
@@ -91,7 +104,25 @@
       margin-bottom: -$mg-5;
 
       cursor: pointer;
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
       transition: all 0.3s;
+
+      &--bookmark {
+        margin-right: $mg-5;
+      }
+
+      &--star {
+        margin-right: $mg-5;
+        margin-bottom: -$mg-5;
+
+        width: 22px;
+        height: 22px;
+
+        &.active {
+          fill: #ffd32a;
+        }
+      }
 
       &:hover {
         fill: $color-gray-0;
@@ -116,6 +147,10 @@
     border: 1px solid $color-gray-1;
 
     text-align: left;
+
+    -webkit-transition: all 0.3s;
+
+    -o-transition: all 0.3s;
 
     transition: all 0.3s;
 
@@ -162,7 +197,147 @@
       top: 50%;
       left: 50%;
 
+      -webkit-transform: translate(-50%, -50%);
+
+      -ms-transform: translate(-50%, -50%);
+
       transform: translate(-50%, -50%);
+    }
+  }
+}
+
+//Responsive
+
+@media screen and (max-width: 1300px) {
+  .total-country {
+    &__title {
+      font-size: $fs-16;
+    }
+
+    &__container {
+      width: 100%;
+    }
+
+    &__th {
+      font-size: $fs-16;
+    }
+  }
+}
+
+@include responsive("lg") {
+  .total-country {
+    &__filter {
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+    }
+
+    &__text {
+      font-size: $fs-14;
+      line-height: 20px;
+    }
+
+    &__button {
+      width: 350px;
+
+      &::before {
+        top: 50%;
+        left: -44%;
+
+        width: 150px;
+      }
+
+      &::after {
+        top: 50%;
+        right: -44%;
+
+        width: 150px;
+      }
+    }
+  }
+}
+
+@include responsive("md") {
+  .total-country {
+    &__filter {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+    }
+
+    &__item {
+      -ms-flex-preferred-size: 45%;
+      flex-basis: 45%;
+    }
+
+    &__th {
+      font-size: $fs-14;
+    }
+
+    &__td {
+      font-size: $fs-14;
+      line-height: 18px;
+
+      &-icon {
+        width: 16px;
+        height: 16px;
+
+        &--star {
+          width: 16px;
+          height: 16px;
+
+          margin-bottom: -$mg-5 + 2;
+        }
+
+        &--bookmark {
+          margin-right: $mg-5 - 3;
+        }
+      }
+    }
+
+    &__button {
+      width: 300px;
+
+      &::before {
+        top: 50%;
+        left: -40%;
+
+        width: 120px;
+      }
+
+      &::after {
+        top: 50%;
+        right: -40%;
+
+        width: 120px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .total-country {
+    &__filter {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+
+    &__button {
+      width: 210px;
+
+      &::before {
+        top: 50%;
+        left: -48%;
+
+        width: 100px;
+      }
+
+      &::after {
+        top: 50%;
+        right: -48%;
+
+        width: 100px;
+      }
     }
   }
 }
